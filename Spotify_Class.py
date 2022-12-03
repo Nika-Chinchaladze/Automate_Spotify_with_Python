@@ -1,15 +1,16 @@
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import json
+import os
 
 
 class SpotifyWorker:
     def __init__(self):
         self.my_username = "chincho"
         self.my_token = SpotifyOAuth(
-            client_id="73ac198766af4214b83fb17b2d0d17e2",
-            client_secret="1ccfb38a36ea4d18846640a96f6b183b",
-            redirect_uri="https://example.com/callback/",
+            client_id=os.environ.get("CLIENT_ID"),
+            client_secret=os.environ.get("CLIENT_SECRET"),
+            redirect_uri=os.environ.get("REDIRECT_URI"),
             scope="playlist-modify-private",
             show_dialog=True,
             cache_path="token.json"
